@@ -29,7 +29,7 @@ public class UserController {
 
 
         User user = new User("Jan", "Kowalski", address);
-        address.setUser(user);
+//        address.setUser(user);
         userService.saveUser(user);
 
 
@@ -37,10 +37,10 @@ public class UserController {
         return "Success";
     }
 
-    @GetMapping("/getUser")
+    @GetMapping("/getAddress")
     @ResponseBody
-    public String findUser(@RequestParam Long userId) {
-        User result = userService.findOne(userId);
+    public String findAddress(@RequestParam Long addressId) {
+        Address result = addressService.findOne(addressId);
         return result.toString();
     }
 }

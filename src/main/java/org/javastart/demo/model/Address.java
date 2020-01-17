@@ -18,7 +18,7 @@ public class Address {
     private String houseNumber;
     private String flatNumber;
 
-    @OneToOne
+    @OneToOne(mappedBy = "address")
     private User user;
 
     public Address() {
@@ -86,7 +86,7 @@ public class Address {
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
                 ", houseNumber='" + houseNumber + '\'' +
-                ", flatNumber='" + flatNumber + '\'' +
+                ", flatNumber='" + flatNumber + '\'' + "userName: " + user.getFirstName() +
                 '}';
     }
 }
