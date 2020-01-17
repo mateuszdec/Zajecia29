@@ -7,6 +7,7 @@ import org.javastart.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -25,11 +26,19 @@ public class UserController {
     @ResponseBody
     public String saveUser() {
         Address address = new Address("Wrocław", "Piękna", "182", "1");
-        addressService.saveAddress(address);
+
 
         User user = new User("Jan", "Kowalski", address);
         userService.saveUser(user);
 
+//        addressService.saveAddress(address);
         return "Success";
+    }
+
+    @GetMapping("/getUser")
+    @ResponseBody
+    public String findUser(@RequestParam Long userId) {
+        User result = userService.findOne(userId);
+        return result.toString();
     }
 }
