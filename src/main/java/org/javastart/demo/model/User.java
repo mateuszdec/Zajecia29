@@ -17,8 +17,11 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private Set<EmailAddress> emailAddresses = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Project> projects = new HashSet<>();
 
     public User() {
     }
@@ -32,6 +35,11 @@ public class User {
     public void addEmailAddress(EmailAddress emailAddress) {
         emailAddresses.add(emailAddress);
         emailAddress.setUser(this);
+    }
+
+    public void addProject(Project project) {
+        this.projects.add(project);
+        project.getUsers().add(this);
     }
 
     public Long getId() {
@@ -84,4 +92,6 @@ public class User {
                 ", emailAddresses=" + emailAddresses +
                 '}';
     }
+
+
 }
