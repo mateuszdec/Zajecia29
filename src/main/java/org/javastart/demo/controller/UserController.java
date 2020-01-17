@@ -1,6 +1,7 @@
 package org.javastart.demo.controller;
 
 import org.javastart.demo.model.Address;
+import org.javastart.demo.model.EmailAddress;
 import org.javastart.demo.model.User;
 import org.javastart.demo.service.AddressService;
 import org.javastart.demo.service.UserService;
@@ -30,6 +31,17 @@ public class UserController {
 
         User user = new User("Jan", "Kowalski", address);
 //        address.setUser(user);
+        EmailAddress gmail = new EmailAddress("jan@gmail.com");
+        EmailAddress wp = new EmailAddress("jan.kowalski@wp.pl");
+//        user.getEmailAddresses().add(gmail);
+//        user.getEmailAddresses().add(wp);
+//
+//        gmail.setUser(user);
+//        wp.setUser(user);
+
+        user.addEmailAddress(gmail);
+        user.addEmailAddress(wp);
+
         userService.saveUser(user);
 
 
