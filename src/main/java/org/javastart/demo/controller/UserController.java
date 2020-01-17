@@ -29,7 +29,9 @@ public class UserController {
 
 
         User user = new User("Jan", "Kowalski", address);
+        address.setUser(user);
         userService.saveUser(user);
+
 
 //        addressService.saveAddress(address);
         return "Success";
